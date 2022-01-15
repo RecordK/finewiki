@@ -12,7 +12,7 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/v1/member")
+@RequestMapping("/member")
 public class MemberController {
 
     @Autowired
