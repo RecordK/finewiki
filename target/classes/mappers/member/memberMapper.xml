@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sesac.finewiki.mappers.member.memberMapper">
+
+    <insert id="register">
+        INSERT INTO my_member (
+            mem_id
+            , mem_pw
+            , mem_name
+            , mem_email
+            , mem_birth
+            , nick
+        ) VALUES (
+            #{mem_id}
+            , #{mem_pw}
+            , #{mem_name}
+            , #{mem_email}
+            , #{mem_birth}
+            , #{nick}
+        )
+    </insert>
+    
+  	 <select id="login" resultMap="MemberVoResultMap">
+    	SELECT
+    	  *
+    	FROM my_member
+    	WHERE mem_id = #{mem_id}
+    </select>
+    
+    <update id="keepLogin"> 
+    	UPDATE my_member 
+    	SET session_key = #{session_id}, 
+    		session_limit = #{sessionLimit} 
+    	WHERE mem_id = #{mem_id} 
+    </update> 
+    
+    <select id="checkUserWithSessionKey" resultMap="MemberVoResultMap"> 
+	    SELECT 
+	    * 
+	    FROM my_member
+	    WHERE session_key = #{value} 
+    </select>
+
+<!--회원 정보 수정-->
+    <update id="updateMember">
+        UPDATE my_member
+        SET
+            mem_email = #{mem_email},
+            nick = #{nick}
+        WHERE mem_id = #{mem_id}
+    </update>
+
+    <!--회원 비밀번호-->
+    <select id="getMember" resultMap="MemberVoResultMap">
+        SELECT *
+        FROM my_member
+        WHERE mem_id = #{mem_id}
+    </select>
+
+    <!--회원비밀번호 수정-->
+    <update id="updatePw">
+        UPDATE my_member
+        SET
+            mem_pw = #{mem_pw}
+        WHERE mem_id = #{mem_id}
+    </update>
+
+    <!--회원 프로필 이미지 변경-->
+    <update id="updateMem_image" >
+        UPDATE my_member
+        SET
+            mem_img = #{mem_img}
+        WHERE mem_id = #{mem_id}
+    </update>
+	<!-- 추가 --> 
+	<resultMap id="MemberVoResultMap" type="MemberVo"> 
+		<id property="mem_id" column="mem_id"/> 
+		<result property="mem_pw" column="mem_pw"/> 
+		<result property="mem_name" column="mem_name"/>
+		<result property="mem_birth" column="mem_birth"/>  
+		<result property="nick" column="nick"/>
+		<result property="mem_pw" column="mem_pw"/> 
+		<result property="mem_join_date" column="mem_join_date"/> 
+		<result property="mem_login_date" column="mem_login_date"/> 
+		<result property="mem_signature" column="mem_signature"/> 
+		<result property="mem_img" column="mem_img"/> 
+		<result property="mem_point" column="mem_point"/> 
+	</resultMap>
+
+
+
+
+</mapper>
