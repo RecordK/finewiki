@@ -15,13 +15,13 @@ import com.sesac.finewiki.paging.PageMaker;
 import com.sesac.finewiki.paging.SearchCriteria;
 import com.sesac.finewiki.vo.BoardVo;
 import com.sesac.finewiki.vo.FreeVo;
-import com.sesac.finewiki.service.BoardService;
+import com.sesac.finewiki.service.StockDashBoardService;
 import com.sesac.finewiki.service.FreeService;
 
 @Controller
 @RequestMapping("/board/free")
 public class FreeBoardController {
-	private static final Logger logger = LoggerFactory.getLogger(BoardPagingSearchController.class);
+	private static final Logger logger = LoggerFactory.getLogger(FreeBoardController.class);
 	private final FreeService freeService;
 
 	@Inject

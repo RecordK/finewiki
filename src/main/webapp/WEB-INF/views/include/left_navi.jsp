@@ -62,6 +62,29 @@
 								<p style="color:black">&nbsp;&nbsp;&nbsp;&nbsp;자유 게시판</p>
 						</a></li>
 					</ul></li>
+				<li class="nav-item has-treeview menu-open"><a href="#"
+					class="nav-link"><i class="nav-icon fas fa-tachometer-alt"></i>
+						<p>
+							&nbsp;&nbsp;&nbsp;&nbsp;Dashboard 홈<i class="right fas fa-angle-left"></i>
+						</p>
+				</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item"><a href="${path}/dashboard/stock"
+							class="nav-link"> <img src="${path}/dist/img/stock.png"
+						class="img" alt="User Image">
+								<p style="color:black">&nbsp;&nbsp;&nbsp;주식 Dashboard</p>
+						</a></li>
+						<li class="nav-item"><a href="${path}/board/estate/list"
+							class="nav-link"><img src="${path}/dist/img/estate.png"
+						class="img" alt="User Image">
+								<p style="color:black">&nbsp;&nbsp;&nbsp;부동산 Dashboard</p>
+						</a></li>
+						<li class="nav-item"><a href="${path}/board/free/list"
+							class="nav-link"> <img src="${path}/dist/img/free.png"
+						class="img" alt="User Image">
+								<p style="color:black">&nbsp;&nbsp;&nbsp;&nbsp;기타 자산 Dashboard</p>
+						</a></li>
+					</ul></li>
 			</ul>
 		</nav>
 		<!-- /.sidebar-menu -->

@@ -17,13 +17,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sesac.finewiki.service.BoardService;
+import com.sesac.finewiki.service.StockDashBoardService;
+import com.sesac.finewiki.service.StockService;
+import com.sesac.finewiki.service.EstateService;
+import com.sesac.finewiki.service.FreeService;
 import com.sesac.finewiki.service.MemberService;
 import com.sesac.finewiki.service.ReplyService;
 import com.sesac.finewiki.util.UploadFileUtils;
 import com.sesac.finewiki.vo.BoardVo;
+import com.sesac.finewiki.vo.EstateVo;
+import com.sesac.finewiki.vo.FreeVo;
 import com.sesac.finewiki.vo.MemberVo;
 import com.sesac.finewiki.vo.ReplyVo;
+import com.sesac.finewiki.vo.StockVo;
 
 @Controller
 @RequestMapping("/member")
@@ -32,9 +38,15 @@ public class MemberInfoController {
 
 	@Inject
 	private MemberService memberService;
+	@Inject
+	private EstateService estateService;
+	@Inject
+	private StockService stockService;
+	@Inject
+	private FreeService freeService;
 
 	@Inject
-	private BoardService boardService;
+	private StockDashBoardService boardService;
 
 	@Inject
 	private ReplyService replyService;
@@ -134,11 +146,15 @@ public class MemberInfoController {
 
 		String mem_id = vo.getMem_id();
 
-		List<BoardVo> memberBoardList = boardService.memberBoardList(mem_id);
+		List<StockVo> memberStockList = stockService.memberStockList(mem_id);
+		List<EstateVo> memberEstateList = estateService.memberEstateList(mem_id);
+		List<FreeVo> memberFreeList = freeService.memberFreeList(mem_id);
 
 		List<ReplyVo> memberReplies = replyService.memberReplies(mem_id);
 
-		model.addAttribute("memberBoardList", memberBoardList);
+		model.addAttribute("memberStockList", memberStockList);
+		model.addAttribute("memberEstateList", memberEstateList);
+		model.addAttribute("memberFreeList", memberFreeList);
 
 		model.addAttribute("memberReplies", memberReplies);
 

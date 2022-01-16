@@ -15,13 +15,13 @@ import com.sesac.finewiki.paging.PageMaker;
 import com.sesac.finewiki.paging.SearchCriteria;
 import com.sesac.finewiki.vo.BoardVo;
 import com.sesac.finewiki.vo.EstateVo;
-import com.sesac.finewiki.service.BoardService;
+import com.sesac.finewiki.service.StockDashBoardService;
 import com.sesac.finewiki.service.EstateService;
 
 @Controller
 @RequestMapping("/board/estate")
 public class EstateBoardController {
-	private static final Logger logger = LoggerFactory.getLogger(BoardPagingSearchController.class);
+	private static final Logger logger = LoggerFactory.getLogger(EstateBoardController.class);
 	private final EstateService estateService;
 
 	@Inject

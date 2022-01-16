@@ -15,13 +15,13 @@ import com.sesac.finewiki.paging.PageMaker;
 import com.sesac.finewiki.paging.SearchCriteria;
 import com.sesac.finewiki.vo.BoardVo;
 import com.sesac.finewiki.vo.StockVo;
-import com.sesac.finewiki.service.BoardService;
+import com.sesac.finewiki.service.StockDashBoardService;
 import com.sesac.finewiki.service.StockService;
 
 @Controller
 @RequestMapping("/board/stock")
 public class StockBoardController {
-	private static final Logger logger = LoggerFactory.getLogger(BoardPagingSearchController.class);
+	private static final Logger logger = LoggerFactory.getLogger(StockBoardController.class);
 	private final StockService stockService;
 
 	@Inject

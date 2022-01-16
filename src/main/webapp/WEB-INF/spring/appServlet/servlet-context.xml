@@ -43,9 +43,15 @@
             <beans:ref bean="loginInterceptor"/>
         </interceptor>
         <interceptor>
-            <mapping path="/board/paging/search/write"/>
-            <mapping path="/board/paging/search/modify"/>
-            <mapping path="/board/paging/search/remove"/>
+            <mapping path="/board/estate/write"/>
+            <mapping path="/board/estate/modify"/>
+            <mapping path="/board/estate/remove"/>
+             <mapping path="/board/stock/write"/>
+            <mapping path="/board/stock/modify"/>
+            <mapping path="/board/stock/remove"/>
+             <mapping path="/board/free/write"/>
+            <mapping path="/board/free/modify"/>
+            <mapping path="/board/free/remove"/>
             <mapping path="/member/info"/>
             <beans:ref bean="authInterceptor"/>
         </interceptor>

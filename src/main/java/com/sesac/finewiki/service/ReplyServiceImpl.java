@@ -8,13 +8,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sesac.finewiki.paging.Criteria;
 import com.sesac.finewiki.persistence.BoardDAO;
+import com.sesac.finewiki.persistence.EstateDAO;
+import com.sesac.finewiki.persistence.FreeDAO;
 import com.sesac.finewiki.persistence.ReplyDAO;
+import com.sesac.finewiki.persistence.StockDAO;
 import com.sesac.finewiki.vo.ReplyVo;
 
 @Service
 public class ReplyServiceImpl implements ReplyService {
 	private final ReplyDAO replyDAO;
 	private final BoardDAO boardDAO;
+//	private final StockDAO stockDAO;
+//	private final EstateDAO estateDAO;
+//	private final FreeDAO freeDAO;
 
 	@Inject
 	public ReplyServiceImpl(ReplyDAO replyDAO, BoardDAO boardDAO) {
@@ -27,7 +33,9 @@ public class ReplyServiceImpl implements ReplyService {
 	@Override
 	public void addReply(ReplyVo replyVo) throws Exception {
 		replyDAO.create(replyVo); // 댓글 등록
-		boardDAO.updateReplyCnt(replyVo.getData_no(), 1); // 댓글 갯수 증가
+//		stockDAO.updateReplyCnt(replyVo.getData_no(), 1); // 댓글 갯수 증가
+//		estateDAO.updateReplyCnt(replyVo.getData_no(), 1); // 댓글 갯수 증가
+//		freeDAO.updateReplyCnt(replyVo.getData_no(), 1); // 댓글 갯수 증가
 
 	}
 
@@ -37,7 +45,7 @@ public class ReplyServiceImpl implements ReplyService {
 	public void removeReply(Integer reply_no) throws Exception {
 		int data_no = replyDAO.getData_no(reply_no); // 댓글의 게시물 번호 조회
 		replyDAO.delete(reply_no); // 댓글 삭제
-		boardDAO.updateReplyCnt(data_no, -1); // 댓글 갯수 감소 }
+//		boardDAO.updateReplyCnt(data_no, -1); // 댓글 갯수 감소 }
 	}
 
 	@Override
