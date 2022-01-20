@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/plugins/**" location="/resources/plugins/"/>
+	<resources mapping="/dist/**" location="/resources/dist/"/>
+
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<!-- 파일 업로드 빈 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    	<beans:property name="maxUploadSize" value="10485760"/>
+	</beans:bean>
+	
+	<context:component-scan base-package="com.sesac.finewiki" />
+	
+
+	<beans:bean id="loginInterceptor" class="com.sesac.finewiki.interceptor.LoginInterceptor"/>
+	<beans:bean id="authInterceptor" class="com.sesac.finewiki.interceptor.AuthInterceptor"/>
+	<beans:bean id="rememberMeInterceptor" class="com.sesac.finewiki.interceptor.RememberMeInterceptor"/>
+	<beans:bean id="loginAfterInterceptor" class="com.sesac.finewiki.interceptor.LoginAfterInterceptor"/>
+
+	<interceptors>
+        <interceptor>
+            <mapping path="/member/loginPost"/>
+            <beans:ref bean="loginInterceptor"/>
+        </interceptor>
+        <interceptor>
+            <mapping path="/board/estate/write"/>
+            <mapping path="/board/estate/modify"/>
+            <mapping path="/board/estate/remove"/>
+             <mapping path="/board/stock/write"/>
+            <mapping path="/board/stock/modify"/>
+            <mapping path="/board/stock/remove"/>
+             <mapping path="/board/free/write"/>
+            <mapping path="/board/free/modify"/>
+            <mapping path="/board/free/remove"/>
+            <mapping path="/member/info"/>
+            <beans:ref bean="authInterceptor"/>
+        </interceptor>
+        <interceptor> 
+        	<mapping path="/**/"/> 
+        	<beans:ref bean="rememberMeInterceptor"/> 
+        </interceptor>
+        <interceptor> 
+	        <mapping path="/member/login"/> 
+	        <mapping path="/member/register"/> 
+	        <beans:ref bean="loginAfterInterceptor"/> 
+        </interceptor>
+
+    </interceptors>
+	
+</beans:beans>
